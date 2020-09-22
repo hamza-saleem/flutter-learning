@@ -1,9 +1,9 @@
 # flutter-learning
-## Working
+## Apps by me
 This is my learning repo
-1. call
-2. API
-3. GET
+1. Learnt to add assets etc.
+2. Simple card app
+3. App for add and delete quotes.
 ## Build and Run
 ## Developers note
-## Contibuters
+## Contibutors
