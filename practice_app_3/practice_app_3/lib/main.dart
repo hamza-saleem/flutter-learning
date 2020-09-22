@@ -13,7 +13,7 @@ class QuoteList extends StatefulWidget {
 
 class _QuoteListState extends State<QuoteList> {
   List<Quote> quotes = [
-    Quote(text: "Dont give up! You Fool!", author: "Hamza Saleem"),
+    Quote(text: "Don't give up! You Fool!", author: "Hamza Saleem"),
     Quote(text: "Nothing is Impossible!!", author: "Hamza Saleem"),
   ];
 
