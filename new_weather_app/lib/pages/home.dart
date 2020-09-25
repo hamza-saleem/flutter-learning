@@ -9,41 +9,40 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String city = 'Lahore';
+  var city;
   var temp;
   var current;
   var description;
   var humidity;
   var windSpeed;
 
-  Future<void> getWeather() async {
-    WeatherFactory wf = new WeatherFactory("1057f6fa2dbdb047fd007dd80fefd20b");
-
-    Weather w = await wf.currentWeatherByCityName(city);
-
-    temp = w.temperature;
-    current = w.weatherMain;
-    description = w.weatherDescription;
-    humidity = w.humidity;
-    windSpeed = w.windSpeed;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    this.getWeather();
-  }
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+
+    // print(data);
     return Scaffold(
         body: SafeArea(
       child: Center(
         child: Column(
           children: <Widget>[
             FlatButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/location');
+              onPressed: () async {
+                dynamic result =
+                    await Navigator.pushNamed(context, '/location');
+                setState(() {
+                  data = {
+                    'city': result['city'],
+                    'temp': result['temp'],
+                    'current': result['current'],
+                    'description': result['description'],
+                    'humidity': result['humidity'],
+                    'windSpeed': result['windSpeed'],
+                  };
+                });
+                print(result);
               },
               icon: Icon(Icons.edit_location),
               label: Text('Edit Location'),
@@ -59,7 +58,7 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: Text(
-                      "Lahore",
+                      city = data['city'],
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.0,
@@ -67,7 +66,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Text(
-                    temp != null ? temp.toString() : "Loading",
+                    temp = data['temp'].toString(),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 40.0,
@@ -76,7 +75,7 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding: EdgeInsets.only(top: 10.0),
                     child: Text(
-                      current != null ? current.toString() : "Loading",
+                      current = data['current'],
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.0,
@@ -94,27 +93,22 @@ class _HomeState extends State<Home> {
                     ListTile(
                       leading: FaIcon(FontAwesomeIcons.thermometerHalf),
                       title: Text("Temperature"),
-                      trailing:
-                          Text(temp != null ? temp.toString() : "Loading"),
+                      trailing: Text(temp = data['temp'].toString()),
                     ),
                     ListTile(
                       leading: FaIcon(FontAwesomeIcons.cloud),
                       title: Text("Weather"),
-                      trailing: Text(description != null
-                          ? description.toString()
-                          : "Loading"),
+                      trailing: Text(description = data['description']),
                     ),
                     ListTile(
                       leading: FaIcon(FontAwesomeIcons.sun),
                       title: Text("Humidity Level"),
-                      trailing: Text(
-                          humidity != null ? humidity.toString() : "Loading"),
+                      trailing: Text(humidity = data['humidity'].toString()),
                     ),
                     ListTile(
                       leading: FaIcon(FontAwesomeIcons.wind),
                       title: Text("Wind Speed"),
-                      trailing: Text(
-                          windSpeed != null ? windSpeed.toString() : "Loading"),
+                      trailing: Text(windSpeed = data['windSpeed'].toString()),
                     ),
                   ],
                 ),

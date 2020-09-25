@@ -9,6 +9,26 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  String city;
+  void setupWeather() async {
+    WeatherClass sample = WeatherClass(city: "Lahore");
+    await sample.getData();
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'city': sample.area,
+      'temp': sample.temp,
+      'current': sample.current,
+      'description': sample.description,
+      'humidity': sample.humidity,
+      'windSpeed': sample.windSpeed,
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setupWeather();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
