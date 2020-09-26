@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather/weather.dart';
 import 'package:new_weather_app/services/weather_class.dart';
 
 class ChooseLocation extends StatefulWidget {
@@ -13,6 +12,8 @@ class _ChooseLocationState extends State<ChooseLocation> {
     List<WeatherClass> cities = [
       WeatherClass(city: 'Lahore'),
       WeatherClass(city: 'Karachi'),
+      WeatherClass(city: 'Tokyo'),
+      WeatherClass(city: 'Hokkaido'),
     ];
     void updateTime(index) async {
       WeatherClass instance = cities[index];

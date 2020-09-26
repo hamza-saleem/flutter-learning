@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:new_weather_app/services/weather_class.dart';
-import 'package:weather/weather.dart';
 
 class Home extends StatefulWidget {
   @override

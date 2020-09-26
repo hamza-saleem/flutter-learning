@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:new_weather_app/services/weather_class.dart';
-import 'package:weather/weather.dart';
 
 class Loading extends StatefulWidget {
   @override
