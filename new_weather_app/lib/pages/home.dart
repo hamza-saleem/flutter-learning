@@ -20,7 +20,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
 
-    // print(data);
     return Scaffold(
         body: SafeArea(
       child: Center(
